@@ -2057,7 +2057,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	Bunnyhop: {
 		num: 907,
 		accuracy: 100,
-		basePower: 40,
+		basePower: 60,
 		category: "Physical",
 		name: "Bunny Hop",
 		pp: 30,
