@@ -5109,6 +5109,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Normal",
 		contestType: "Cute",
 	},
+	fairiesembrace: {
+		num: 915,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		name: "Fairies Embrace",
+		pp: 30,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		{
+		onDamagingHitOrder: 1,
+		onDamagingHit(damage, target, source, move) {
+			if (this.checkMoveMakesContact(move, source, target, true)) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Cool",
+	},
 	fairylock: {
 		num: 587,
 		accuracy: true,
@@ -9883,6 +9903,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Grass",
 		zMove: {boost: {spd: 1}},
 		contestType: "Clever",
+	},
+	inkspit: {
+		num: 914,
+		accuracy: 95,
+		basePower: 30,
+		category: "Physical",
+		name: "Ink Spit",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		multihit: [2, 5],
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		zMove: {basePower: 140},
+		maxMove: {basePower: 130},
+		contestType: "Tough",
 	},
 	instruct: {
 		num: 689,
