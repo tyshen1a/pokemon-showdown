@@ -5118,12 +5118,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 30,
 		priority: 1,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		{
 		onDamagingHitOrder: 1,
 		onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target, true)) {
 				this.damage(source.baseMaxhp / 8, source, target);
 			},
+		},
 		secondary: null,
 		target: "normal",
 		type: "Fairy",
