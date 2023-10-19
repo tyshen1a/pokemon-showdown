@@ -1257,9 +1257,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 55,
 		basePowerCallback(pokemon, target, move) {
-			const myItem = source.takeItem();
-			if (myItem.tolowerCase === "berry") {
-				this.debug("BP doubled for no item");
+			if (!pokemon.ateBerry) {
+				this.debug("BP doubled for beryy eaten");
 				return move.basePower * 2;
 			}
 			return move.basePower;
