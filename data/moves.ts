@@ -11154,6 +11154,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1, distance: 1, bypasssub: 1},
+		volatileStatus: 'magnetrise'
 		onHitSide(side, source, move) {
 			const targets = side.allies().filter(ally => (
 				ally.hasAbility(['plus', 'minus']) &&
@@ -11163,7 +11164,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 
 			let didSomething = false;
 			for (const target of targets) {
-				didSomething = this.boost({def: 1, spd: 1}, target, source, move, false, true) || didSomething;
+				didSomething = this.boost({spa: 1, spd: 1, spe: 1}, target, source, move, false, true) || didSomething;
 			}
 			return didSomething;
 		},
@@ -13910,7 +13911,16 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Poison",
 		contestType: "Tough",
-	},
+	}, /*
+	poisonpollen: {
+		num: 917,
+		accuracy: 100,
+		basePower: 0,
+		category: "Special",
+		pp: 15,
+		priority: 0,
+		flags:
+	} */
 	poisonpowder: {
 		num: 77,
 		accuracy: 75,
@@ -13960,6 +13970,36 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		target: "normal",
 		type: "Poison",
+		contestType: "Clever",
+	},
+	polarize: {
+		num: 916,
+		accuracy: 100,
+		basePower: 60,
+		basePowerCallback(target, source, move) {
+			if (move.sourceEffect === 'polarize') {
+				this.debug('BP doubled');
+				return move.basePower * 2;
+			}
+			return move.basePower;
+		},
+		category: "Special",
+		name: "Polarize",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTry(source, target, move) {
+			for (const action of this.queue.list as MoveAction[]) {
+				if (!action.pokemon || !action.move || action.maxMove || action.zmove) continue;
+				if (action.move.id === 'polarize') {
+					this.queue.prioritizeAction(action, move);
+					return;
+				}
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Electric",
 		contestType: "Clever",
 	},
 	pollenpuff: {
