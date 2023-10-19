@@ -5122,7 +5122,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target, true)) {
 				this.damage(source.baseMaxhp / 8, source, target);
-			},
+			}
 		},
 		secondary: null,
 		target: "normal",
