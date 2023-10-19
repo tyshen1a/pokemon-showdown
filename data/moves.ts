@@ -5921,7 +5921,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {},
 		weather: 'sunnyday',
-		terrain: 'grassyterrain'
+		terrain: 'grassyterrain',
 		secondary: null,
 		target: "all",
 		type: "Grass",
