@@ -2063,8 +2063,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 1,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		secondary: null,
-		target: "Normal",
-		type: "normal",
+		target: "normal",
+		type: "Normal",
 		contestType: "Cool",
 	},
 	burningjealousy: {
