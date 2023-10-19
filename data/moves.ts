@@ -11154,7 +11154,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1, distance: 1, bypasssub: 1},
-		volatileStatus: 'magnetrise'
+		volatileStatus: 'magnetrise',
 		onHitSide(side, source, move) {
 			const targets = side.allies().filter(ally => (
 				ally.hasAbility(['plus', 'minus']) &&
