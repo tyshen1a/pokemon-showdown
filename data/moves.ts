@@ -2054,7 +2054,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		maxMove: {basePower: 130},
 		contestType: "Cool",
 	},
-	Bunnyhop: {
+	bunnyhop: {
 		num: 907,
 		accuracy: 100,
 		basePower: 60,
@@ -9064,7 +9064,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Water",
 		contestType: "Clever",
 	},
-	Highfive: {
+	highfive: {
 		num: 906,
 		accuracy: 95,
 		basePower: 40,
