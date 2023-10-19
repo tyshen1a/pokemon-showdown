@@ -1257,8 +1257,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 55,
 		basePowerCallback(pokemon, target, move) {
-			if (!pokemon.ateBerry) {
-				this.debug("BP doubled for beryy eaten");
+			const myItem = source.takeItem();
+			if (myItem.tolowerCase === "berry") {
+				this.debug("BP doubled for no item");
 				return move.basePower * 2;
 			}
 			return move.basePower;
@@ -5908,6 +5909,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Fairy",
 		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
+	flowerdance: {
+		num: 913,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Flower Dance",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		weather: 'sunnyday',
+		terrain: 'grassyterrain'
+		secondary: null,
+		target: "all",
+		type: "Grass",
+		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
 	},
 	flowershield: {
@@ -16443,6 +16461,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		target: "normal",
 		type: "Grass",
+		contestType: "Beautiful",
+	},
+	seedlingsnare: {
+		num: 912,
+		accuracy: 90,
+		basePower: 0,
+		category: "Status",
+		name: "Seedling Snare",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		onHit(target, source, move) {
+			return target.addVolatile('trapped', source, move, 'trapper');
+		},
+		volatileStatus: 'leechseed',
+		onTryImmunity(target) {
+			return !target.hasType('Grass');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		zMove: {boost: {spd: 1}},
 		contestType: "Beautiful",
 	},
 	seismictoss: {
