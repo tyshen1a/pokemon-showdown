@@ -416,14 +416,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Fighting') {
-				this.debug('Thick Fat weaken');
+				this.debug('Belly Cushion weaken');
 				return this.chainModify(0.5);
 			}
 		},
 		onSourceModifySpAPriority: 5,
 		onSourceModifySpA(atk, attacker, defender, move) {
-			if (move.type === 'Ice') {
-				this.debug('Thick Fat weaken');
+			if (move.type === 'Fighting') {
+				this.debug('Belly Cushion weaken');
 				return this.chainModify(0.5);
 			}
 		},
