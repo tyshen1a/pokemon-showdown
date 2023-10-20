@@ -471,8 +471,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
             			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
         			},
         		onWeatherChange(pokemon) {
+						if (pokemon.shieldBoost) {
+							return
+						};
             			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
-                		this.boost({def: 1, spd: 1}, pokemon);
+							pokemon.shieldBoost = true;
+							this.boost({def: 1, spd: 1}, pokemon);
             			}
         	},
     		name: "Blossoming Flower",
@@ -678,6 +682,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	corrosion: {
 		// Implemented in sim/pokemon.js:Pokemon#setStatus
+		onModifyMove(move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Poison'] = true;
+			}
+		}
 		name: "Corrosion",
 		rating: 2.5,
 		num: 212,

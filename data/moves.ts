@@ -6067,7 +6067,7 @@ export const Moves: {[moveid: string]: MoveData} = {
             		if (type === 'Bug') return 1;
         	},
         	secondary: {
-            	chance: 10,
+            	chance: 20,
             	volatileStatus: 'flinch',
         	},
         	target: "normal",
@@ -13911,16 +13911,33 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Poison",
 		contestType: "Tough",
-	}, /*
+	},
 	poisonpollen: {
 		num: 917,
 		accuracy: 100,
-		basePower: 0,
+		basePower: 80,
 		category: "Special",
 		pp: 15,
 		priority: 0,
-		flags:
-	} */
+		flags: {mirror: 1, powder: 1, protect: 1},
+		onBasePower(basePower, attacker) {
+			if (['sunnyday', 'desolateland'].includes(attacker.effectiveWeather())) {
+				this.debug('weather buff');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMove(move, pokemon, target) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				move.target = 'allAdjacent';
+			}
+		},
+		secondary: {
+			chance: 30,
+			status: 'psn',
+		},
+		target: "normal",
+		type: "Poison",
+	},
 	poisonpowder: {
 		num: 77,
 		accuracy: 75,
@@ -15979,15 +15996,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Clever",
 	},
-	rosebloom: {
+	rosewhip: {
         	num: 910,
        		accuracy: 100,
         	basePower: 40,
         	category: "Special",
-        	name: "Rose Bloom",
+        	name: "Rose Whip",
         	pp: 30,
         	priority: 1,
-        	flags: {protect: 1, mirror: 1},
+        	flags: {contact: 1, protect: 1, mirror: 1},
         	secondary: null,
         	target: "normal",
         	type: "Grass",
